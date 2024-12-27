@@ -1,0 +1,13 @@
+{% extends 'base_generic.html' %}
+
+
+{% block content %}
+    <h1>Все альбомы</h1>
+    <ul class="list-group">
+        {% for album in albums %}
+            <li class="list-group-item">
+                <a href="{% url 'album_detail' album.id %}">{{ album.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

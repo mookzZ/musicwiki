@@ -1,0 +1,28 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}Главная страница - Музыкальная Википедия{% endblock %}
+
+{% block content %}
+    <h1>Добро пожаловать в Музыкальную Википедию!</h1>
+
+    <h2>Последние группы</h2>
+    <ul>
+        {% for group in latest_groups %}
+            <li><a href="{% url 'group_detail' group.id %}">{{ group.name }} ({{ group.created_at }})</a></li>
+        {% endfor %}
+    </ul>
+
+    <h2>Последние альбомы</h2>
+    <ul>
+        {% for album in latest_albums %}
+            <li><a href="{% url 'album_detail' album.id %}">{{ album.name }} — {{ album.group.name }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <h2>Последние песни</h2>
+    <ul>
+        {% for song in latest_songs %}
+            <li><a href="{% url 'song_detail' song.id %}">{{ song.name }} ({{ song.group.name }})</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

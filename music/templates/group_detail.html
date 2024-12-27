@@ -1,0 +1,28 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}{{ group.name }} - Музыкальная Википедия{% endblock %}
+
+{% block content %}
+    <h1>{{ group.name }}</h1>
+    <p>{{ group.description }}</p>
+    <p><strong>Дата создания:</strong> {{ group.created_at }}</p>
+    <img src="{{ group.image.url }}" alt="{{ group.name }}" width="300">
+
+    <h2>Альбомы</h2>
+    <ul>
+        {% for album in group.albums.all %}
+            <li><a href="{% url 'album_detail' album.id %}">{{ album.name }}</a></li>
+        {% empty %}
+            <li>Нет альбомов</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Песни</h2>
+    <ul>
+        {% for song in group.songs.all %}
+            <li><a href="{% url 'song_detail' song.id %}">{{ song.name }}</a></li>
+        {% empty %}
+            <li>Нет песен</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
